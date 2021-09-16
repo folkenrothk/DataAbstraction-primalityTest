@@ -1,6 +1,6 @@
 # Primality Testing
 
-## Add Your Name Here
+## Kate Folkenroth
 
 ## Program Output
 
