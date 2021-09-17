@@ -43,6 +43,49 @@ TODO: Provide one paragraph that states which algorithm is fastest, by how much
 it is faster, and how you knew that the it was faster, referencing the data in
 the aforementioned command outputs to support your response.
 
+```
+poetry run primality --number 49979687 --approach efficient --profile
+😄 Attempting to determine if 49979687 is a prime number!
+
+1, 49979687
+✨ What divisors were found? None
+✨ Was this a prime number? Yes
+
+🔬 Here's profile data from performing primality testing on 49979687!
+
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 09:14:18  Samples:  1
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 0.010     CPU time: 0.000
+/   _/                      v4.0.3
+
+Program: primality --number 49979687 --approach efficient --profile
+
+0.001 primality  primality\main.py:112
+└─ 0.001 stop  pyinstrument\profiler.py:136
+      [3 frames hidden]  pyinstrument
+         0.001 unsubscribe  pyinstrument\stack_sampler.py:77
+
+
+```
+
+```
+poetry run primality --number 49979687 --approach exhaustive --profile
+😄 Attempting to determine if 49979687 is a prime number!
+
+<class 'int'>, 1, 49979687
+✨ What divisors were found? None
+✨ Was this a prime number? Yes
+
+🔬 Here's profile data from performing primality testing on 49979687!
+
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 09:14:46  Samples:  1
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 5.028     CPU time: 5.031
+/   _/                      v4.0.3
+
+Program: primality --number 49979687 --approach exhaustive --profile
+
+5.029 primality  primality\main.py:112
+└─ 5.029 primality_test_exhaustive  primality\main.py:51
+```
 ## Source Code
 
 ### Describe in detail how the completed source code works

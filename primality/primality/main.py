@@ -43,6 +43,7 @@ def pretty_print_list(values: Iterable[int]) -> str:
     """Pretty print a list without brackets and adding commas."""
     # create and return a version of the list without brackets
     # and with commas in between all of the values
+    # also denote that it is a string type
     humanList = str(print(*values, sep = ', '))
     return humanList
   
@@ -50,11 +51,12 @@ def pretty_print_list(values: Iterable[int]) -> str:
 def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
     """Perform an exhaustive primality test on the provided integer."""
     # declare the smallest_divisor with default of None
+    # and intialize an empty list of integers
     smallest_divisor = None
     intList = [int]
     # exhaustively search through all of the values, starting at 2
-    for guess in range(2,x):
     # --> if the number is evenly divisible, then it is not prime
+    for guess in range(2,x):
         if x % guess == 0:
             smallest_divisor = guess
             break
@@ -130,7 +132,6 @@ def primality(
         # do not perform profiling
         else:
             primality_tuple = primality_test_efficient(number)
-
     # use the exhaustive primality testing algorithm
     elif approach.value == PrimalityTestingApproach.exhaustive:
         # Reference for more details:
