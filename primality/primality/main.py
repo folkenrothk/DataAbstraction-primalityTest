@@ -20,6 +20,7 @@ cli = typer.Typer()
 # create a Profiler object to support timing program code segments
 profiler = Profiler()
 
+
 class PrimalityTestingApproach(str, Enum):
     """Define the name for the approach for performing primality testing."""
 
@@ -44,9 +45,9 @@ def pretty_print_list(values: Iterable[int]) -> str:
     # create and return a version of the list without brackets
     # and with commas in between all of the values
     # also denote that it is a string type
-    humanList = str(print(*values, sep = ', '))
+    humanList = str(print(*values, sep=", "))
     return humanList
-  
+
 
 def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
     """Perform an exhaustive primality test on the provided integer."""
@@ -56,7 +57,7 @@ def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
     intList = [int]
     # exhaustively search through all of the values, starting at 2
     # --> if the number is evenly divisible, then it is not prime
-    for guess in range(2,x):
+    for guess in range(2, x):
         if x % guess == 0:
             smallest_divisor = guess
             break
@@ -89,14 +90,14 @@ def primality_test_efficient(x: int) -> Tuple[bool, List[int]]:
         isPrime = False
         intList.append(smallest_divisor)
     # if the number is not even, then iteratively perform primality test
-    else: 
-    # use a range function that skips over the even values
+    else:
+        # use a range function that skips over the even values
         for guess in range(3, x, 2):
             if x % guess == 0:
                 smallest_divisor = guess
                 isPrime = False
                 intList.append(smallest_divisor)
-                
+
             else:
                 isPrime = True
                 intList.append(1)
@@ -141,7 +142,7 @@ def primality(
             profiler.start()
             primality_tuple = primality_test_exhaustive(number)
             profiler.stop()
-        # do not perform profiling
+            # do not perform profiling
             primality_tuple = primality_test_exhaustive(number)
 
     # display the results of the primality test
