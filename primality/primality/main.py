@@ -1,6 +1,6 @@
 """Perform primality testing with both exhaustive and efficient approaches."""
 
-from logging import FATAL
+# from logging import FATAL
 from pyinstrument import Profiler  # type: ignore
 
 from typing import Iterable
@@ -8,7 +8,8 @@ from typing import List
 from typing import Tuple
 
 from enum import Enum
-from pathlib import Path
+
+# from pathlib import Path
 
 import typer
 
@@ -18,7 +19,7 @@ from rich.console import Console
 cli = typer.Typer()
 
 # create a Profiler object to support timing program code segments
-profiler = Profiler()
+profiler = Profiler(interval=0.0001)
 
 
 class PrimalityTestingApproach(str, Enum):
@@ -32,7 +33,7 @@ def human_readable_boolean(answer: bool) -> str:
     """Produce a human-readable Yes or No for a boolean value of True or False."""
     # Produce a human-readable value for a bool
     # True --> "Yes"
-    if answer == True:
+    if answer is True:
         readableBool = "Yes"
     # False --> "No"
     else:
@@ -45,8 +46,10 @@ def pretty_print_list(values: Iterable[int]) -> str:
     # create and return a version of the list without brackets
     # and with commas in between all of the values
     # also denote that it is a string type
-    humanList = str(print(*values, sep=", "))
-    return humanList
+    humanList = ""
+    for x in values:
+        humanList += f"{x},"
+    return humanList.rstrip(",")
 
 
 def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
@@ -54,7 +57,6 @@ def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
     # declare the smallest_divisor with default of None
     # and intialize an empty list of integers
     smallest_divisor = None
-    intList: List[int] = []
     # exhaustively search through all of the values, starting at 2
     # --> if the number is evenly divisible, then it is not prime
     for guess in range(2, x):
@@ -63,51 +65,41 @@ def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
             break
     # if smallest_divisor is no longer None then the function has
     # found a non-prime number with a specific smallest_divisor
-    if smallest_divisor != None:
-        isPrime = False
-        intList.append(smallest_divisor)
+    if smallest_divisor is not None:
+        return (False, [smallest_divisor])
     # if the smallest_divisor is still None then the function has
     # found a prime number and it should return both itself and 1
     else:
-        isPrime = True
-        intList.append(1)
-        intList.append(x)
+        return (True, [1,x])
     # make sure that the function returns:
     # --> a bool for whether or not the number was prime
     # --> a List[int] for the list with the smallest divisor for the number
     # --> if the number is prime, return the List[int] with both the number and 1
-    return (isPrime, intList)
 
 
 def primality_test_efficient(x: int) -> Tuple[bool, List[int]]:
     """Perform an efficient primality test on the provided integer."""
     smallest_divisor = None
-    intList: List[int] = []
     # determine first if the number is even and then confirm
     # that it does have a smallest_divisor of 2
     if x % 2 == 0:
         smallest_divisor = 2
-        isPrime = False
-        intList.append(smallest_divisor)
     # if the number is not even, then iteratively perform primality test
     else:
         # use a range function that skips over the even values
         for guess in range(3, x, 2):
             if x % guess == 0:
                 smallest_divisor = guess
-                isPrime = False
-                intList.append(smallest_divisor)
-
-            else:
-                isPrime = True
-                intList.append(1)
-                intList.append(x)
-            break
+                break
+        if smallest_divisor is not None:
+            return (False, [smallest_divisor])
+        else:
+            return (True, [1,x])
+            
     # Make sure that the function returns:
     # --> a bool for whether or not the number was prime
     # --> a List[int] for the list with the smallest divisor for the number
     # --> if the number is prime, return the List[int] with both the number and 1
-    return (isPrime, intList)
 
 
 @cli.command()
@@ -144,6 +136,7 @@ def primality(
             primality_tuple = primality_test_exhaustive(number)
             profiler.stop()
             # do not perform profiling
+        else:
             primality_tuple = primality_test_exhaustive(number)
 
     # display the results of the primality test
