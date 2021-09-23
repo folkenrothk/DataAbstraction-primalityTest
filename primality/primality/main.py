@@ -54,7 +54,7 @@ def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
     # declare the smallest_divisor with default of None
     # and intialize an empty list of integers
     smallest_divisor = None
-    intList = [int]
+    intList: List[int] = []
     # exhaustively search through all of the values, starting at 2
     # --> if the number is evenly divisible, then it is not prime
     for guess in range(2, x):
@@ -82,7 +82,7 @@ def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
 def primality_test_efficient(x: int) -> Tuple[bool, List[int]]:
     """Perform an efficient primality test on the provided integer."""
     smallest_divisor = None
-    intList = []
+    intList: List[int] = []
     # determine first if the number is even and then confirm
     # that it does have a smallest_divisor of 2
     if x % 2 == 0:
@@ -121,6 +121,7 @@ def primality(
     console = Console()
     # create an empty primality_tuple
     primality_tuple: Tuple[bool, List[int]]
+
     # Use the efficient primality testing algorithm
     if approach.value == PrimalityTestingApproach.efficient:
         # Reference for more details:
