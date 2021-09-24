@@ -19,6 +19,7 @@ from rich.console import Console
 cli = typer.Typer()
 
 # create a Profiler object to support timing program code segments
+"""Set Profiler to an interval of 0.0001"""
 profiler = Profiler(interval=0.0001)
 
 
@@ -70,7 +71,7 @@ def primality_test_exhaustive(x: int) -> Tuple[bool, List[int]]:
     # if the smallest_divisor is still None then the function has
     # found a prime number and it should return both itself and 1
     else:
-        return (True, [1,x])
+        return (True, [1, x])
     # make sure that the function returns:
     # --> a bool for whether or not the number was prime
     # --> a List[int] for the list with the smallest divisor for the number
@@ -94,8 +95,8 @@ def primality_test_efficient(x: int) -> Tuple[bool, List[int]]:
         if smallest_divisor is not None:
             return (False, [smallest_divisor])
         else:
-            return (True, [1,x])
-            
+            return (True, [1, x])
+
     # Make sure that the function returns:
     # --> a bool for whether or not the number was prime
     # --> a List[int] for the list with the smallest divisor for the number

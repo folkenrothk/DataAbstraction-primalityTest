@@ -6,117 +6,145 @@
 
 ### Use six fenced code blocks to provide output from different runs of `primality` with different inputs
 
-TODO: Pick three different input values and run then each with
 (a) the exhaustive algorithm
 and
 (b) the efficient algorithm
 
-TODO: Overall, provide a total of six commands and six fenced code blocks
-TODO: Three outputs should be from the efficient algorithm and three should be with the exhaustive algorithm
-TODO: Run the exhaustive and efficient algorithm with the same inputs
+Inputs:
+ 1. 15485867
+ 2. 49979687
+ 3. 86028121
+
 
 #### Three outputs from running the exhaustive algorithm
-`poetry run primality --number TODO --approach exhaustive`
+
+`poetry run primality --number 15485867 --approach exhaustive --profile`
 
 ```
-```
+😄 Attempting to determine if 15485867 is a prime number!
 
-`poetry run primality --number TODO --approach exhaustive`
-
-```
-```
-
-`poetry run primality --number 49979687 --approach exhaustive`
-
-```
-
-```
-
-#### Three outputs from running the efficient algorithm
-
-`poetry run primality --number TODO --approach efficient`
-
-```
-```
-
-`poetry run primality --number TODO --approach efficient`
-
-```
-
-```
-
-`poetry run primality --number 49979687 --approach efficient`
-
-```
-😄 Attempting to determine if 49979687 is a prime number!
-
-1, 49979687
-✨ What divisors were found? None
+✨ What divisors were found? 1,15485867
 ✨ Was this a prime number? Yes
 
-🔬 Here's profile data from performing primality testing on 49979687!
+🔬 Here's profile data from performing primality testing on 15485867!   
 
-  _     ._   __/__   _ _  _  _ _/_   Recorded: 09:14:18  Samples:  1
- /_//_/// /_\ / //_// / //_'/ //     Duration: 0.010     CPU time: 0.000
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 19:25:51  Samples:  1    
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 0.882     CPU time: 0.875
 /   _/                      v4.0.3
 
-Program: primality --number 49979687 --approach efficient --profile
+Program: primality --number 15485867 --approach exhaustive --profile    
 
-0.001 primality  primality\main.py:112
-└─ 0.001 stop  pyinstrument\profiler.py:136
-      [3 frames hidden]  pyinstrument
-         0.001 unsubscribe  pyinstrument\stack_sampler.py:77
+0.868 primality  primality\main.py:105
+└─ 0.868 primality_test_exhaustive  primality\main.py:55
 ```
 
-## Performance Analysis
-
-TODO: Provide one paragraph that states which algorithm is fastest, by how much
-it is faster, and how you knew that the it was faster, referencing the data in
-the aforementioned command outputs to support your response.
+`poetry run primality --number 49979687 --approach exhaustive --profile`
 
 ```
-poetry run primality --number 49979687 --approach efficient --profile
 😄 Attempting to determine if 49979687 is a prime number!
 
-1, 49979687
-✨ What divisors were found? None
+✨ What divisors were found? 1,49979687
 ✨ Was this a prime number? Yes
 
 🔬 Here's profile data from performing primality testing on 49979687!
 
-  _     ._   __/__   _ _  _  _ _/_   Recorded: 09:14:18  Samples:  1
- /_//_/// /_\ / //_// / //_'/ //     Duration: 0.010     CPU time: 0.000
-/   _/                      v4.0.3
-
-Program: primality --number 49979687 --approach efficient --profile
-
-0.001 primality  primality\main.py:112
-└─ 0.001 stop  pyinstrument\profiler.py:136
-      [3 frames hidden]  pyinstrument
-         0.001 unsubscribe  pyinstrument\stack_sampler.py:77
-
-
-```
-
-```
-poetry run primality --number 49979687 --approach exhaustive --profile
-😄 Attempting to determine if 49979687 is a prime number!
-
-<class 'int'>, 1, 49979687
-✨ What divisors were found? None
-✨ Was this a prime number? Yes
-
-🔬 Here's profile data from performing primality testing on 49979687!
-
-  _     ._   __/__   _ _  _  _ _/_   Recorded: 09:14:46  Samples:  1
- /_//_/// /_\ / //_// / //_'/ //     Duration: 5.028     CPU time: 5.031
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 16:44:26  Samples:  3
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 4.919     CPU time: 4.625
 /   _/                      v4.0.3
 
 Program: primality --number 49979687 --approach exhaustive --profile
 
-5.029 primality  primality\main.py:112
-└─ 5.029 primality_test_exhaustive  primality\main.py:51
+4.918 primality  primality\main.py:105
+└─ 4.918 primality_test_exhaustive  primality\main.py:55
 ```
+
+`poetry run primality --number 86028121 --approach exhaustive --profile`
+
+```
+😄 Attempting to determine if 86028121 is a prime number!
+
+✨ What divisors were found? 1,86028121
+✨ Was this a prime number? Yes
+
+🔬 Here's profile data from performing primality testing on 86028121!
+
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 19:28:03  Samples:  1
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 5.189     CPU time: 5.188
+/   _/                      v4.0.3
+
+Program: primality --number 86028121 --approach exhaustive --profile
+
+5.198 primality  primality\main.py:105
+└─ 5.198 primality_test_exhaustive  primality\main.py:55
+```
+
+
+#### Three outputs from running the efficient algorithm
+
+`poetry run primality --number 15485867  --approach efficient --profile`
+
+```
+😄 Attempting to determine if 15485867 is a prime number!
+
+✨ What divisors were found? 1,15485867
+✨ Was this a prime number? Yes
+
+🔬 Here's profile data from performing primality testing on 15485867!
+
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 19:23:01  Samples:  1
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 0.480     CPU time: 0.484
+/   _/                      v4.0.3
+
+Program: primality --number 15485867 --approach efficient --profile
+
+0.479 primality  primality\main.py:105
+└─ 0.479 primality_test_efficient  primality\main.py:80
+```
+
+`poetry run primality --number 49979687 --approach efficient --profile`
+
+```
+😄 Attempting to determine if 49979687 is a prime number!
+
+✨ What divisors were found? 1,49979687
+✨ Was this a prime number? Yes
+
+🔬 Here's profile data from performing primality testing on 49979687!
+
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 16:44:02  Samples:  2
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 2.573     CPU time: 2.562
+/   _/                      v4.0.3
+
+Program: primality --number 49979687 --approach efficient --profile
+
+2.574 primality  primality\main.py:105
+└─ 2.574 primality_test_efficient  primality\main.py:80
+```
+
+`poetry run primality --number 86028121 --approach efficient --profile`
+
+```
+😄 Attempting to determine if 86028121 is a prime number!
+
+✨ What divisors were found? 1,86028121
+✨ Was this a prime number? Yes
+
+🔬 Here's profile data from performing primality testing on 86028121!
+
+  _     ._   __/__   _ _  _  _ _/_   Recorded: 19:22:44  Samples:  2
+ /_//_/// /_\ / //_// / //_'/ //     Duration: 2.447     CPU time: 2.438
+/   _/                      v4.0.3
+
+Program: primality --number 86028121 --approach efficient --profile
+
+2.446 primality  primality\main.py:105
+└─ 2.446 primality_test_efficient  primality\main.py:80
+```
+
+## Performance Analysis
+
+From the outputs recorded above, the efficient algorithm is faster than the exhaustive. From the three outputs the percentage change of durations are 45.6%, 47.7%, 52.8%. In summary, the efficient algorithm is around 50% faster than the exhaustive algorithm. This makes a lot of since since the efficient algorithm uses bisection search and thus uses half of the data every iteration. 
+
 ## Source Code
 
 ### Describe in detail how the completed source code works
@@ -154,6 +182,8 @@ The signature above shows the function `primality` which defines the command-lin
 ### What was the greatest challenge that you faced when completing this assignment?
 
 The greatest challenge of this engineering effort was figuring out how the lists work in Python. It took some time to connect my understanding from Java lists and translate to the proper terms for Python. I think conceptually my understanding of how the lists work in code improved as well. 
+
+After the difficulties of lab today, the next greatest challenge was working through the loops with my code. I was curious if there was something wrong as I continued to have no samples record by the profiler. It required us to walk through our whole code again to find any possible errors that may have cause a bad loop or incorrect commands for calling the profiler. Eventually, I felt successful after working diligently scanning source code with my collegue to fix both of our coding problems. This was mostly done by us walking through line by line in problem sections to check if we knew what the code was actually doing, removed unnecessary lines of code, and improved some blocks of code.
 
 ### Based on your experiences with this project, what is one way in which you want to improve?
 
