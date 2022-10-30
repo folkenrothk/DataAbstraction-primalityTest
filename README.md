@@ -11,4 +11,7 @@
   - Please note that the program will not work unless you add the required source code
   - Please refer to the `writing/reflection.md` file for all ways to run the program
 - Confirm that the program is producing the expected output
-- Provide all of the required responses in the `writing/reflection.md` file
+
+## Findings
+
+Please refer to [the final report](./writing/reflection.md) for reflection findings.
