@@ -14,4 +14,4 @@
 
 ## Findings
 
-Please refer to [the final report](./writing/reflection.md) for reflection findings.
+Please refer to [the final report](./writing/reflection.md) for reflection and findings.
